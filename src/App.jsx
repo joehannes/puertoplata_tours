@@ -16,7 +16,7 @@ export default function App() {
   const { lang, setLang } = useLanguage();
 
   return (
-    <Layout lang={lang} setLang={setLang}>
+    <Layout lang={lang} setLang={setLang} settings={data?.settings}>
       {loading ? <LoadingSkeleton /> : (
         <Routes>
           <Route path="/" element={<LandingPage lang={lang} data={data} />} />

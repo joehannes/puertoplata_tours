@@ -11,29 +11,35 @@ export default function CustomPage({ data }) {
   const [date, setDate] = useState('');
 
   const total = hours * data.customOptions.basePricePerHour * groupSize;
-
   const toggle = (id) => setSelected((prev) => prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]);
 
   return (
-    <div className="card space-y-4">
-      <h1 className="font-heading text-3xl">Build Your Day</h1>
-      <p>Choose your preferences and decide in real time with your private local guide.</p>
-      <div className="grid md:grid-cols-2 gap-3">
-        {opts.map((o) => (
-          <button key={o.id} onClick={() => toggle(o.id)} className={`p-3 rounded-xl border text-left ${selected.includes(o.id) ? 'bg-ocean-100 border-ocean-500' : 'bg-white'}`}>
-            {o.label}
-          </button>
-        ))}
-      </div>
-      <div className="grid md:grid-cols-4 gap-3">
-        <label>Hours (max {data.customOptions.maxHours})<input className="w-full border rounded p-2" type="number" min="1" max={data.customOptions.maxHours} value={hours} onChange={(e) => setHours(Number(e.target.value))} /></label>
-        <label>Group<input className="w-full border rounded p-2" type="number" min="1" value={groupSize} onChange={(e) => setGroupSize(Number(e.target.value))} /></label>
-        <label>Date<input className="w-full border rounded p-2" type="date" value={date} onChange={(e) => setDate(e.target.value)} /></label>
-      </div>
-      <button className="btn-primary" onClick={() => {
-        setCart({ type: 'custom', preferences: opts.filter((o) => selected.includes(o.id)).map((o) => o.label), hours, groupSize, date, pickup: 'Cruise Port', total });
-        navigate('/checkout');
-      }}>Continue (${total})</button>
+    <div className="space-y-4">
+      <section className="tropical-card">
+        <h1 className="font-heading text-3xl">Private “Build Your Day” Guide</h1>
+        <p className="text-slate-700 mt-2">Tell us your mood, then improvise on the go. Perfect when your group wants mixed experiences without rigid schedules.</p>
+      </section>
+
+      <section className="tropical-card">
+        <h2 className="font-display text-xl mb-3">Choose your tropical mix</h2>
+        <div className="grid md:grid-cols-3 gap-3">
+          {opts.map((o) => (
+            <button key={o.id} onClick={() => toggle(o.id)} className={`p-3 rounded-3xl border text-left transition ${selected.includes(o.id) ? 'bg-ocean-100 border-ocean-500' : 'bg-white border-slate-200'}`}>
+              {o.label}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="tropical-card grid md:grid-cols-4 gap-3 items-end">
+        <label>Hours<input className="w-full border rounded-xl p-2" type="number" min="1" max={data.customOptions.maxHours} value={hours} onChange={(e) => setHours(Number(e.target.value))} /></label>
+        <label>Group<input className="w-full border rounded-xl p-2" type="number" min="1" value={groupSize} onChange={(e) => setGroupSize(Number(e.target.value))} /></label>
+        <label>Date<input className="w-full border rounded-xl p-2" type="date" value={date} onChange={(e) => setDate(e.target.value)} /></label>
+        <button className="btn-island" onClick={() => {
+          setCart({ type: 'custom', preferences: opts.filter((o) => selected.includes(o.id)).map((o) => o.label), hours, groupSize, date, pickup: 'Cruise Port', total });
+          navigate('/checkout');
+        }}>Continue ${total}</button>
+      </section>
     </div>
   );
 }

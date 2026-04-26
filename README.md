@@ -1,20 +1,19 @@
 # Puerto Plata Tours (Frontend-only)
 
-React + Vite + Tailwind app for Puerto Plata cruise tourists.
+Mobile-first React + Vite tourism storefront for Puerto Plata cruise visitors.
+
+## Features
+- Two booking journeys: fixed shore tours + flexible private guide day.
+- Tropical Caribbean UI (mobile focused, icons, organic shapes, immersive visuals).
+- JSONBin content storage with localStorage fallback.
+- Admin dashboard with real forms and auto Cloudinary upload -> URL attachment.
+- PayPal checkout and bilingual WhatsApp booking message.
 
 ## Run
-
 ```bash
 npm install
 npm run dev
 ```
 
 ## Deploy
-
-Deploy to Cloudflare Pages as a static app (`npm run build`).
-
-## Notes
-- Data persisted in localStorage and JSONBin.
-- Admin page protected by `VITE_ADMIN_PASSWORD`.
-- PayPal checkout + WhatsApp confirmation flow.
-- EN/ES toggle saved in cookies.
+Static deploy on Cloudflare Pages (`npm run build`).
