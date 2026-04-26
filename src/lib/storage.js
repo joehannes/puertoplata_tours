@@ -20,5 +20,14 @@ export const writeLocal = (k, v) => {
 
 export const getData = (fallback) => readLocal(KEY, fallback);
 export const setData = (data) => writeLocal(KEY, data);
-export const getCart = () => readLocal(CART_KEY, null);
-export const setCart = (cart) => writeLocal(CART_KEY, cart);
+
+export const getCart = () => readLocal(CART_KEY, []);
+export const setCart = (cartItems) => writeLocal(CART_KEY, cartItems);
+export const addCartItem = (item) => {
+  const current = getCart();
+  const next = [...current, { ...item, id: `${Date.now()}_${Math.random().toString(16).slice(2)}` }];
+  setCart(next);
+  return next;
+};
+export const clearCart = () => setCart([]);
+export const cartTotal = (items) => items.reduce((sum, item) => sum + (item.total || 0), 0);

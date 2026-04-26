@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { getCart, setCart } from '../lib/storage';
-import { buildWhatsAppMessage } from '../lib/i18n';
+import { cartTotal, clearCart, getCart, setCart } from '../lib/storage';
+import { buildWhatsAppMessage, tr } from '../lib/i18n';
 
 function loadPayPal(clientId, currency) {
   return new Promise((resolve, reject) => {
@@ -15,46 +15,58 @@ function loadPayPal(clientId, currency) {
 }
 
 export default function CheckoutPage({ data, lang }) {
-  const [cart] = useState(() => getCart());
+  const [cart, setCartState] = useState(() => getCart());
   const [paid, setPaid] = useState(false);
   const containerRef = useRef(null);
+  const total = useMemo(() => cartTotal(cart), [cart]);
 
   const waUrl = useMemo(() => {
-    if (!cart) return '#';
+    if (!cart.length) return '#';
     const number = data.settings.whatsappNumber || import.meta.env.VITE_WHATSAPP_NUMBER;
-    const text = buildWhatsAppMessage({ lang, booking: cart });
+    const text = buildWhatsAppMessage({ lang, items: cart, total });
     return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-  }, [cart, data.settings.whatsappNumber, lang]);
+  }, [cart, data.settings.whatsappNumber, lang, total]);
 
   useEffect(() => {
     let mounted = true;
     async function renderButtons() {
       const clientId = import.meta.env.VITE_PAYPAL_CLIENT_ID;
-      if (!cart || !containerRef.current || !clientId) return;
+      if (!cart.length || !containerRef.current || !clientId) return;
       const paypal = await loadPayPal(clientId, data.settings.currency || 'USD');
       if (!mounted || !paypal) return;
       containerRef.current.innerHTML = '';
       paypal.Buttons({
-        createOrder: (_d, actions) => actions.order.create({ purchase_units: [{ amount: { value: cart.total.toFixed(2) } }] }),
+        createOrder: (_d, actions) => actions.order.create({ purchase_units: [{ amount: { value: total.toFixed(2) } }] }),
         onApprove: async (_d, actions) => {
           await actions.order.capture();
           setPaid(true);
-          setCart({ ...cart, paid: true, paidAt: new Date().toISOString() });
+          setCart(cart.map((item) => ({ ...item, paid: true, paidAt: new Date().toISOString() })));
         }
       }).render(containerRef.current);
     }
     renderButtons();
     return () => { mounted = false; };
-  }, [cart, data.settings.currency]);
+  }, [cart, data.settings.currency, total]);
 
-  if (!cart) return <div className="card">No active booking in session.</div>;
+  if (!cart.length) return <div className="card">{tr(lang, 'checkout.empty')}</div>;
 
   return (
     <div className="card space-y-4">
-      <h1 className="font-heading text-3xl">Checkout</h1>
-      <p>Total: <strong>${cart.total}</strong></p>
+      <h1 className="font-heading text-3xl">{tr(lang, 'checkout.title')}</h1>
+      <div className="space-y-2">
+        {cart.map((item) => (
+          <div key={item.id} className="rounded-2xl p-3 bg-white/50 backdrop-blur border border-white/60">
+            <p className="font-semibold">{tr(lang, 'checkout.item')}: {item.type === 'tour' ? item.title : (lang === 'es' ? 'Día Personalizado' : 'Custom Day')}</p>
+            <p className="text-sm text-slate-600">${item.total} • {item.date || 'TBD'}</p>
+          </div>
+        ))}
+      </div>
+      <p>{tr(lang, 'checkout.total')}: <strong>${total}</strong></p>
       <div ref={containerRef} />
-      {(paid || !import.meta.env.VITE_PAYPAL_CLIENT_ID) && <a className="btn-primary inline-block" href={waUrl} target="_blank" rel="noreferrer">Confirm on WhatsApp</a>}
+      <div className="flex gap-2 flex-wrap">
+        {(paid || !import.meta.env.VITE_PAYPAL_CLIENT_ID) && <a className="btn-primary inline-block" href={waUrl} target="_blank" rel="noreferrer">{tr(lang, 'checkout.confirm')}</a>}
+        <button className="btn-secondary" onClick={() => { clearCart(); setCartState([]); }}>{tr(lang, 'checkout.clear')}</button>
+      </div>
     </div>
   );
 }

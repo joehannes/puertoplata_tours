@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { uploadToCloudinary } from '../lib/api';
+import { tr } from '../lib/i18n';
 
 const emptyTour = {
   id: '', title: '', shortDescription: '', description: '', durationHours: 4,
@@ -10,7 +11,7 @@ const emptyTransfer = { id: '', title: '', price: 35, capacity: 4, description: 
 
 const parseList = (v) => v.split(',').map((x) => x.trim()).filter(Boolean);
 
-export default function AdminPage({ data, updateData }) {
+export default function AdminPage({ data, updateData, lang }) {
   const [pwd, setPwd] = useState('');
   const [ok, setOk] = useState(false);
   const [status, setStatus] = useState('');
@@ -23,7 +24,7 @@ export default function AdminPage({ data, updateData }) {
   const persist = async (next) => {
     setDraft(next);
     await updateData(next);
-    setStatus('Saved to local + JSONBin');
+    setStatus(tr(lang, 'admin.saved'));
   };
 
   const addTour = () => setDraft((prev) => ({ ...prev, tours: [...prev.tours, { ...emptyTour, id: `tour_${Date.now()}` }] }));
@@ -48,18 +49,18 @@ export default function AdminPage({ data, updateData }) {
   };
 
   const tabs = useMemo(() => [
-    { id: 'tours', label: 'Tours' },
-    { id: 'custom', label: 'Custom' },
-    { id: 'transfers', label: 'Transfers' },
-    { id: 'settings', label: 'Settings' }
-  ], []);
+    { id: 'tours', label: tr(lang, 'admin.tours') },
+    { id: 'custom', label: tr(lang, 'admin.custom') },
+    { id: 'transfers', label: tr(lang, 'admin.transfers') },
+    { id: 'settings', label: tr(lang, 'admin.settings') }
+  ], [lang]);
 
   if (!ok) {
     return (
       <div className="tropical-card max-w-md mx-auto space-y-3">
-        <h1 className="font-heading text-2xl">Admin Login</h1>
+        <h1 className="font-heading text-2xl">{tr(lang, 'admin.login')}</h1>
         <input className="w-full border rounded-xl p-2" type="password" value={pwd} onChange={(e) => setPwd(e.target.value)} placeholder="Password" />
-        <button className="btn-island" onClick={login}>Enter Dashboard</button>
+        <button className="btn-island" onClick={login}>{tr(lang, 'admin.enter')}</button>
       </div>
     );
   }
@@ -68,12 +69,12 @@ export default function AdminPage({ data, updateData }) {
     <div className="space-y-4">
       <div className="tropical-card flex flex-wrap gap-2 items-center justify-between">
         <div className="flex gap-2">{tabs.map((x) => <button key={x.id} className={`rounded-full px-3 py-1 ${tab === x.id ? 'bg-ocean-700 text-white' : 'bg-ocean-50'}`} onClick={() => setTab(x.id)}>{x.label}</button>)}</div>
-        <button className="btn-sunset" onClick={() => persist(draft)}>Save All Changes</button>
+        <button className="btn-sunset" onClick={() => persist(draft)}>{tr(lang, 'common.save')}</button>
       </div>
 
       {tab === 'tours' && (
         <div className="space-y-4">
-          <button className="btn-island" onClick={addTour}>+ Add Tour</button>
+          <button className="btn-island" onClick={addTour}>{tr(lang, 'admin.addTour')}</button>
           {draft.tours.map((tour, idx) => (
             <div key={tour.id} className="tropical-card space-y-2">
               <div className="grid md:grid-cols-3 gap-2">
@@ -92,11 +93,11 @@ export default function AdminPage({ data, updateData }) {
               <input className="border rounded-xl p-2 w-full" value={(tour.itinerary || []).join(', ')} onChange={(e) => updateTour(idx, { itinerary: parseList(e.target.value) })} placeholder="itinerary comma separated" />
               <input className="border rounded-xl p-2 w-full" value={(tour.includes || []).join(', ')} onChange={(e) => updateTour(idx, { includes: parseList(e.target.value) })} placeholder="includes comma separated" />
               <input className="border rounded-xl p-2 w-full" value={(tour.notes || []).join(', ')} onChange={(e) => updateTour(idx, { notes: parseList(e.target.value) })} placeholder="notes comma separated" />
-              <label className="text-sm block">Upload image
+              <label className="text-sm block">{tr(lang, 'admin.upload')}
                 <input type="file" accept="image/*" onChange={(e) => onTourImageUpload(idx, e.target.files?.[0])} className="mt-1" />
               </label>
               <div className="grid grid-cols-4 gap-2">{tour.images.map((img) => <img key={img} src={img} alt="tour" className="h-16 w-full object-cover rounded-xl" />)}</div>
-              <button className="text-sm text-red-600" onClick={() => setDraft((prev) => ({ ...prev, tours: prev.tours.filter((_, i) => i !== idx) }))}>Delete tour</button>
+              <button className="text-sm text-red-600" onClick={() => setDraft((prev) => ({ ...prev, tours: prev.tours.filter((_, i) => i !== idx) }))}>{tr(lang, 'admin.del')} tour</button>
             </div>
           ))}
         </div>
@@ -104,7 +105,7 @@ export default function AdminPage({ data, updateData }) {
 
       {tab === 'transfers' && (
         <div className="space-y-4">
-          <button className="btn-island" onClick={addTransfer}>+ Add Transfer</button>
+          <button className="btn-island" onClick={addTransfer}>{tr(lang, 'admin.addTransfer')}</button>
           {draft.transfers.map((tr, idx) => (
             <div key={tr.id} className="tropical-card grid md:grid-cols-3 gap-2 items-center">
               <input className="border rounded-xl p-2" value={tr.title} onChange={(e) => updateTransfer(idx, { title: e.target.value })} />
@@ -113,7 +114,7 @@ export default function AdminPage({ data, updateData }) {
               <input className="border rounded-xl p-2" type="number" value={tr.price} onChange={(e) => updateTransfer(idx, { price: Number(e.target.value) })} />
               <input className="border rounded-xl p-2" type="number" value={tr.capacity} onChange={(e) => updateTransfer(idx, { capacity: Number(e.target.value) })} />
               <input className="border rounded-xl p-2" type="number" value={tr.durationMinutes || 40} onChange={(e) => updateTransfer(idx, { durationMinutes: Number(e.target.value) })} />
-              <button className="text-sm text-red-600" onClick={() => setDraft((prev) => ({ ...prev, transfers: prev.transfers.filter((_, i) => i !== idx) }))}>Delete</button>
+              <button className="text-sm text-red-600" onClick={() => setDraft((prev) => ({ ...prev, transfers: prev.transfers.filter((_, i) => i !== idx) }))}>{tr(lang, 'admin.del')}</button>
             </div>
           ))}
         </div>

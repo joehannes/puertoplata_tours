@@ -20,12 +20,12 @@ export default function App() {
       {loading ? <LoadingSkeleton /> : (
         <Routes>
           <Route path="/" element={<LandingPage lang={lang} data={data} />} />
-          <Route path="/tours" element={<ToursPage data={data} />} />
-          <Route path="/tours/:id" element={<TourDetailPage data={data} />} />
-          <Route path="/custom" element={<CustomPage data={data} />} />
-          <Route path="/transfers" element={<TransfersPage data={data} />} />
+          <Route path="/tours" element={<ToursPage lang={lang} data={data} />} />
+          <Route path="/tours/:id" element={<TourDetailPage lang={lang} data={data} />} />
+          <Route path="/custom" element={<CustomPage lang={lang} data={data} />} />
+          <Route path="/transfers" element={<TransfersPage lang={lang} data={data} />} />
           <Route path="/checkout" element={<CheckoutPage data={data} lang={lang} />} />
-          <Route path="/admin" element={<AdminPage data={data} updateData={updateData} />} />
+          <Route path="/admin" element={<AdminPage lang={lang} data={data} updateData={updateData} />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       )}
