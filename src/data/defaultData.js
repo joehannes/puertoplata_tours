@@ -9,9 +9,9 @@ export const defaultData = {
       price: { adult: 79, child: 59 },
       maxGroupSize: 12,
       images: [
-        'https://images.pexels.com/photos/1761279/pexels-photo-1761279.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/949194/pexels-photo-949194.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.pexels.com/photos/6675953/pexels-photo-6675953.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/5149088/pexels-photo-5149088.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/4965888/pexels-photo-4965888.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       tags: ['nature', 'adventure', 'waterfalls'],
       itinerary: ['Port pickup (Amber Cove or Taíno Bay)', 'Damajagua park briefing + equipment', 'Guided waterfall route', 'Dominican lunch stop', 'Return before all-aboard'],
@@ -28,9 +28,9 @@ export const defaultData = {
       price: { adult: 58, child: 38 },
       maxGroupSize: 14,
       images: [
-        'https://images.pexels.com/photos/1462399/pexels-photo-1462399.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1320684/pexels-photo-1320684.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/5945737/pexels-photo-5945737.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.pexels.com/photos/5310566/pexels-photo-5310566.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/5310572/pexels-photo-5310572.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/5310572/pexels-photo-5310572.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       tags: ['culture', 'food', 'shopping'],
       itinerary: ['Port pickup', 'Fortaleza San Felipe photo stop', 'Umbrella Street + Pink Alley', 'Rum & cacao tasting', 'Souvenir time + return'],
@@ -47,9 +47,9 @@ export const defaultData = {
       price: { adult: 62, child: 44 },
       maxGroupSize: 10,
       images: [
-        'https://images.pexels.com/photos/1659438/pexels-photo-1659438.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/3214944/pexels-photo-3214944.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.pexels.com/photos/29216983/pexels-photo-29216983.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/11776693/pexels-photo-11776693.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/1430677/pexels-photo-1430677.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       tags: ['views', 'nature', 'culture'],
       itinerary: ['Port pickup', 'Isabel de Torres route', 'Garden/photo walk', 'Local snack stop', 'Back to port'],
@@ -66,9 +66,9 @@ export const defaultData = {
       price: { adult: 68, child: 48 },
       maxGroupSize: 12,
       images: [
-        'https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.pexels.com/photos/29216983/pexels-photo-29216983.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/11776693/pexels-photo-11776693.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       tags: ['beach', 'snorkel', 'relax'],
       itinerary: ['Port pickup', 'Drive to beach bay', 'Snorkel or free time', 'Lunch near sea', 'Return window with buffer'],
@@ -86,8 +86,8 @@ export const defaultData = {
       maxGroupSize: 8,
       images: [
         'https://images.pexels.com/photos/163407/cyclists-trail-bike-clouds-163407.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/5838946/pexels-photo-5838946.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/2131623/pexels-photo-2131623.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/1430675/pexels-photo-1430675.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       tags: ['adventure', 'atv', 'jungle'],
       itinerary: ['Port pickup', 'Safety orientation', 'ATV route with stops', 'Fresh fruit break', 'Return transfer'],

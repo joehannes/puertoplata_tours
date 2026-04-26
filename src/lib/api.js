@@ -34,19 +34,29 @@ export async function saveRemoteData(data) {
   return res.ok;
 }
 
-export async function uploadToCloudinary(file) {
+async function cloudinaryUpload(formData) {
   const cloud = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const apiKey = import.meta.env.VITE_CLOUDINARY_API_KEY;
   if (!cloud || !apiKey) throw new Error('Missing Cloudinary vars');
-  const fd = new FormData();
-  fd.append('file', file);
-  fd.append('upload_preset', 'unsigned_puertoplata');
-  fd.append('api_key', apiKey);
+  formData.append('upload_preset', 'unsigned_puertoplata');
+  formData.append('api_key', apiKey);
   const res = await fetch(`https://api.cloudinary.com/v1_1/${cloud}/image/upload`, {
     method: 'POST',
-    body: fd
+    body: formData
   });
   if (!res.ok) throw new Error('Upload failed');
   const data = await res.json();
   return data.secure_url;
+}
+
+export async function uploadToCloudinary(file) {
+  const fd = new FormData();
+  fd.append('file', file);
+  return cloudinaryUpload(fd);
+}
+
+export async function uploadImageUrlToCloudinary(imageUrl) {
+  const fd = new FormData();
+  fd.append('file', imageUrl);
+  return cloudinaryUpload(fd);
 }

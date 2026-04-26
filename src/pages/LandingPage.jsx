@@ -10,7 +10,7 @@ const heroImages = [
 export default function LandingPage({ lang, data }) {
   return (
     <div className="space-y-8">
-      <section className="relative overflow-hidden p-5 pb-16 md:p-8 md:pb-20 wave-top text-white rounded-[2rem]">
+      <section className="relative overflow-hidden p-5 pb-16 md:p-8 md:pb-20 wave-top text-white backdrop-blur-md rounded-[2rem]">
         <div className="relative z-10 max-w-xl space-y-4">
           <p className="uppercase text-xs tracking-[0.25em] text-white/80">{tr(lang, 'landing.heroTag')}</p>
           <h1 className="font-heading text-4xl leading-tight">{tr(lang, 'landing.heroTitle')}</h1>
@@ -25,7 +25,7 @@ export default function LandingPage({ lang, data }) {
 
       <section className="grid grid-cols-3 gap-3">
         {heroImages.map((img, i) => (
-          <img key={img} src={img} alt="Puerto Plata experience" className={`h-36 w-full object-cover ${i % 2 ? 'shell-shape' : 'leaf-shape'}`} />
+          <img key={img} src={img} alt="Puerto Plata experience" className={`h-36 w-full object-cover image-widget ${i % 2 ? 'shell-shape' : 'leaf-shape'}`} />
         ))}
       </section>
 

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { uploadToCloudinary } from '../lib/api';
+import { uploadImageUrlToCloudinary, uploadToCloudinary } from '../lib/api';
 import { tr } from '../lib/i18n';
 
 const emptyTour = {
@@ -48,6 +48,32 @@ export default function AdminPage({ data, updateData, lang }) {
     }
   };
 
+
+  const migrateAllTourImagesToCloudinary = async () => {
+    setStatus('Migrating image URLs to Cloudinary...');
+    try {
+      const migratedTours = [];
+      for (const tour of draft.tours) {
+        const urls = [];
+        for (const img of tour.images) {
+          if (img.includes('res.cloudinary.com')) {
+            urls.push(img);
+          } else {
+            const hosted = await uploadImageUrlToCloudinary(img);
+            urls.push(hosted);
+          }
+        }
+        migratedTours.push({ ...tour, images: urls });
+      }
+      const next = { ...draft, tours: migratedTours };
+      setDraft(next);
+      await updateData(next);
+      setStatus('Migration complete and saved to JSONBin.');
+    } catch {
+      setStatus('Migration failed. Check Cloudinary preset/keys and JSONBin settings.');
+    }
+  };
+
   const tabs = useMemo(() => [
     { id: 'tours', label: tr(lang, 'admin.tours') },
     { id: 'custom', label: tr(lang, 'admin.custom') },
@@ -69,7 +95,7 @@ export default function AdminPage({ data, updateData, lang }) {
     <div className="space-y-4">
       <div className="tropical-card flex flex-wrap gap-2 items-center justify-between">
         <div className="flex gap-2">{tabs.map((x) => <button key={x.id} className={`rounded-full px-3 py-1 ${tab === x.id ? 'bg-ocean-700 text-white' : 'bg-ocean-50'}`} onClick={() => setTab(x.id)}>{x.label}</button>)}</div>
-        <button className="btn-sunset" onClick={() => persist(draft)}>{tr(lang, 'common.save')}</button>
+        <div className="flex gap-2"><button className="btn-sunset" onClick={() => persist(draft)}>{tr(lang, 'common.save')}</button><button className="btn-island" onClick={migrateAllTourImagesToCloudinary}>Migrate Images → Cloudinary</button></div>
       </div>
 
       {tab === 'tours' && (

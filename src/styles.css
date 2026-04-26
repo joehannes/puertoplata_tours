@@ -64,3 +64,10 @@ body {
 .card { @apply tropical-card; }
 .btn-primary { @apply btn-island; }
 .btn-secondary { @apply btn-sunset; }
+
+
+.image-widget {
+  @apply border border-white/60 shadow-md;
+  background: rgba(255,255,255,0.24);
+  backdrop-filter: blur(8px);
+}

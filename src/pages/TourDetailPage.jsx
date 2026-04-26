@@ -24,11 +24,11 @@ export default function TourDetailPage({ data, lang }) {
       <section className="tropical-card space-y-4">
         <h1 className="font-heading text-3xl">{tour.title}</h1>
         <p className="text-slate-700">{tour.description}</p>
-        <img src={tour.images[activeImage]} alt={tour.title} className="w-full h-72 object-cover rounded-3xl" />
+        <img src={tour.images[activeImage]} alt={tour.title} className="w-full h-72 object-cover rounded-3xl image-widget" />
         <div className="grid grid-cols-3 gap-2">
           {tour.images.map((image, idx) => (
             <button key={image} onClick={() => setActiveImage(idx)} className={`rounded-2xl overflow-hidden border-2 ${idx === activeImage ? 'border-ocean-700' : 'border-transparent'}`}>
-              <img src={image} alt={`${tour.title} ${idx + 1}`} className="h-20 w-full object-cover" />
+              <img src={image} alt={`${tour.title} ${idx + 1}`} className="h-20 w-full object-cover image-widget" />
             </button>
           ))}
         </div>

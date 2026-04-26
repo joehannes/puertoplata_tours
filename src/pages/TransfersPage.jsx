@@ -15,7 +15,7 @@ export default function TransfersPage({ data, lang }) {
       <div className="grid md:grid-cols-2 gap-4">
         {data.transfers.filter((trf) => trf.availability).map((trf) => (
           <div key={trf.id} className="tropical-card space-y-3">
-            <img src={transferImage[trf.id]} alt={trf.title} className="h-44 w-full object-cover shell-shape" />
+            <img src={transferImage[trf.id]} alt={trf.title} className="h-44 w-full object-cover shell-shape image-widget" />
             <h2 className="font-display text-xl">{trf.title}</h2>
             <p>{trf.description}</p>
             <p className="text-sm text-slate-600">{tr(lang, 'transfers.capacity')} {trf.capacity} • ~{trf.durationMinutes || 40} min</p>

@@ -9,7 +9,7 @@ export default function ToursPage({ data, lang }) {
       <div className="grid md:grid-cols-2 gap-4">
         {data.tours.filter((tour) => tour.availability).map((tour) => (
           <article key={tour.id} className="tropical-card space-y-3">
-            <img src={tour.images[0]} alt={tour.title} className="w-full h-48 object-cover leaf-shape" />
+            <img src={tour.images[0]} alt={tour.title} className="w-full h-48 object-cover leaf-shape image-widget" />
             <div>
               <h2 className="font-display text-xl">{tour.title}</h2>
               <p>{tour.shortDescription}</p>
