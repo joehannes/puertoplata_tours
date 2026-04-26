@@ -18,11 +18,17 @@ export const writeLocal = (k, v) => {
   }
 };
 
+const normalizeCart = (value) => {
+  if (Array.isArray(value)) return value;
+  if (value && typeof value === 'object') return [value];
+  return [];
+};
+
 export const getData = (fallback) => readLocal(KEY, fallback);
 export const setData = (data) => writeLocal(KEY, data);
 
-export const getCart = () => readLocal(CART_KEY, []);
-export const setCart = (cartItems) => writeLocal(CART_KEY, cartItems);
+export const getCart = () => normalizeCart(readLocal(CART_KEY, []));
+export const setCart = (cartItems) => writeLocal(CART_KEY, normalizeCart(cartItems));
 export const addCartItem = (item) => {
   const current = getCart();
   const next = [...current, { ...item, id: `${Date.now()}_${Math.random().toString(16).slice(2)}` }];
@@ -30,4 +36,4 @@ export const addCartItem = (item) => {
   return next;
 };
 export const clearCart = () => setCart([]);
-export const cartTotal = (items) => items.reduce((sum, item) => sum + (item.total || 0), 0);
+export const cartTotal = (items) => normalizeCart(items).reduce((sum, item) => sum + (Number(item.total) || 0), 0);

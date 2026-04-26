@@ -17,44 +17,58 @@ function loadPayPal(clientId, currency) {
 export default function CheckoutPage({ data, lang }) {
   const [cart, setCartState] = useState(() => getCart());
   const [paid, setPaid] = useState(false);
+  const [showPayPal, setShowPayPal] = useState(false);
   const containerRef = useRef(null);
-  const total = useMemo(() => cartTotal(cart), [cart]);
+
+  const safeCart = useMemo(() => (Array.isArray(cart) ? cart : []), [cart]);
+  const total = useMemo(() => cartTotal(safeCart), [safeCart]);
 
   const waUrl = useMemo(() => {
-    if (!cart.length) return '#';
+    if (!safeCart.length) return '#';
     const number = data.settings.whatsappNumber || import.meta.env.VITE_WHATSAPP_NUMBER;
-    const text = buildWhatsAppMessage({ lang, items: cart, total });
+    const text = buildWhatsAppMessage({ lang, items: safeCart, total });
     return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-  }, [cart, data.settings.whatsappNumber, lang, total]);
+  }, [safeCart, data.settings.whatsappNumber, lang, total]);
 
   useEffect(() => {
     let mounted = true;
     async function renderButtons() {
       const clientId = import.meta.env.VITE_PAYPAL_CLIENT_ID;
-      if (!cart.length || !containerRef.current || !clientId) return;
+      if (!safeCart.length || !containerRef.current || !clientId || !showPayPal) return;
+
       const paypal = await loadPayPal(clientId, data.settings.currency || 'USD');
       if (!mounted || !paypal) return;
+
+      const payeeEmail = data.settings.paypalEmail || import.meta.env.VITE_PAYPAL_EMAIL;
       containerRef.current.innerHTML = '';
       paypal.Buttons({
-        createOrder: (_d, actions) => actions.order.create({ purchase_units: [{ amount: { value: total.toFixed(2) } }] }),
+        createOrder: (_d, actions) => actions.order.create({
+          purchase_units: [{
+            amount: { value: total.toFixed(2) },
+            ...(payeeEmail ? { payee: { email_address: payeeEmail } } : {})
+          }]
+        }),
         onApprove: async (_d, actions) => {
           await actions.order.capture();
+          const paidCart = safeCart.map((item) => ({ ...item, paid: true, paidAt: new Date().toISOString() }));
           setPaid(true);
-          setCart(cart.map((item) => ({ ...item, paid: true, paidAt: new Date().toISOString() })));
+          setCart(paidCart);
+          setCartState(paidCart);
         }
       }).render(containerRef.current);
     }
+
     renderButtons();
     return () => { mounted = false; };
-  }, [cart, data.settings.currency, total]);
+  }, [safeCart, data.settings.currency, data.settings.paypalEmail, total, showPayPal]);
 
-  if (!cart.length) return <div className="card">{tr(lang, 'checkout.empty')}</div>;
+  if (!safeCart.length) return <div className="card">{tr(lang, 'checkout.empty')}</div>;
 
   return (
     <div className="card space-y-4">
       <h1 className="font-heading text-3xl">{tr(lang, 'checkout.title')}</h1>
       <div className="space-y-2">
-        {cart.map((item) => (
+        {safeCart.map((item) => (
           <div key={item.id} className="rounded-2xl p-3 bg-white/50 backdrop-blur border border-white/60">
             <p className="font-semibold">{tr(lang, 'checkout.item')}: {item.type === 'tour' ? item.title : (lang === 'es' ? 'Día Personalizado' : 'Custom Day')}</p>
             <p className="text-sm text-slate-600">${item.total} • {item.date || 'TBD'}</p>
@@ -62,11 +76,15 @@ export default function CheckoutPage({ data, lang }) {
         ))}
       </div>
       <p>{tr(lang, 'checkout.total')}: <strong>${total}</strong></p>
-      <div ref={containerRef} />
+
       <div className="flex gap-2 flex-wrap">
-        {(paid || !import.meta.env.VITE_PAYPAL_CLIENT_ID) && <a className="btn-primary inline-block" href={waUrl} target="_blank" rel="noreferrer">{tr(lang, 'checkout.confirm')}</a>}
+        <a className="btn-primary inline-block" href={waUrl} target="_blank" rel="noreferrer">{tr(lang, 'checkout.confirm')}</a>
+        <button className="btn-sunset" onClick={() => setShowPayPal((v) => !v)}>{tr(lang, 'checkout.paypal')}</button>
         <button className="btn-secondary" onClick={() => { clearCart(); setCartState([]); }}>{tr(lang, 'checkout.clear')}</button>
       </div>
+
+      {showPayPal && import.meta.env.VITE_PAYPAL_CLIENT_ID && <div ref={containerRef} />}
+      {paid && <p className="text-green-700 text-sm">{lang === 'es' ? 'Pago recibido. Ahora confirma por WhatsApp.' : 'Payment received. Now confirm on WhatsApp.'}</p>}
     </div>
   );
 }

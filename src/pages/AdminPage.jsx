@@ -130,8 +130,12 @@ export default function AdminPage({ data, updateData, lang }) {
 
       {tab === 'settings' && (
         <div className="tropical-card grid md:grid-cols-2 gap-2">
-          <input className="border rounded-xl p-2" value={draft.settings.whatsappNumber} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, whatsappNumber: e.target.value } }))} placeholder="WhatsApp" />
-          <input className="border rounded-xl p-2" value={draft.settings.paypalEmail || ''} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, paypalEmail: e.target.value } }))} placeholder="PayPal email" />
+          <label className="text-sm">WhatsApp number
+            <input className="border rounded-xl p-2 w-full" value={draft.settings.whatsappNumber} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, whatsappNumber: e.target.value } }))} placeholder="WhatsApp" />
+          </label>
+          <label className="text-sm">PayPal recipient email (used by checkout button)
+            <input className="border rounded-xl p-2 w-full" value={draft.settings.paypalEmail || ''} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, paypalEmail: e.target.value } }))} placeholder="PayPal email" />
+          </label>
           <input className="border rounded-xl p-2" value={draft.settings.guideName || ''} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, guideName: e.target.value } }))} placeholder="Guide name" />
           <input className="border rounded-xl p-2" type="number" value={draft.settings.guideYears || 0} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, guideYears: Number(e.target.value) } }))} placeholder="Years exp" />
           <textarea className="border rounded-xl p-2 md:col-span-2" value={draft.settings.guideBio || ''} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, guideBio: e.target.value } }))} placeholder="Guide bio" />
