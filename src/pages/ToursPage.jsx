@@ -8,7 +8,7 @@ export default function ToursPage({ data, lang }) {
       <p className="text-slate-600">{tr(lang, 'tours.subtitle')}</p>
       <div className="grid md:grid-cols-2 gap-4">
         {data.tours.filter((tour) => tour.availability).map((tour) => (
-          <article key={tour.id} className="tropical-card space-y-3">
+          <article key={tour.id} className="tropical-card space-y-3 bg-white/30 backdrop-blur-md">
             <img src={tour.images[0]} alt={tour.title} className="w-full h-48 object-cover leaf-shape image-widget" />
             <div>
               <h2 className="font-display text-xl">{tour.title}</h2>
