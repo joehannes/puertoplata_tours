@@ -17,11 +17,10 @@ body {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.24;
-  background-image:
-    radial-gradient(circle at 12px 12px, rgba(22, 163, 74, 0.18) 2px, transparent 2.2px),
-    radial-gradient(circle at 28px 28px, rgba(21, 128, 61, 0.16) 2px, transparent 2.2px);
-  background-size: 40px 40px;
+  opacity: 0.36;
+  background-image: url('/leaf-pattern.svg');
+  background-repeat: repeat;
+  background-size: 420px 420px;
 }
 
 .wave-top {
@@ -31,8 +30,8 @@ body {
 
 .tropical-card {
   @apply rounded-[2rem] p-4 border border-white/60 shadow-lg;
-  background: rgba(255, 255, 255, 0.54);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
 }
 
 .btn-island {
@@ -50,7 +49,7 @@ body {
 .icon-pill {
   @apply h-11 w-11 rounded-full flex items-center justify-center border border-ocean-100/70 text-xl shadow-sm;
   background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
 }
 
 .leaf-shape {

@@ -9,7 +9,7 @@ Mobile-first React + Vite tourism storefront for Puerto Plata cruise visitors.
 - JSONBin content storage with localStorage fallback.
 - Admin dashboard with real forms and auto Cloudinary upload -> URL attachment.
 - PayPal checkout and bilingual WhatsApp booking message.
-- Real-time EN→ES catalog translation for tours/transfers via Langsby API (`VITE_LANGSBY_API_KEY`).
+- Real-time EN→ES catalog translation for tours/transfers via Langbly API (`VITE_LANGBLY_API_KEY`).
 
 ## Final JSON seed (use in JSONBin)
 ```json

@@ -21,6 +21,10 @@ export function useTranslatedCatalog(data, lang) {
     }
 
     async function run() {
+      if (!data?.tours || !data?.transfers) {
+        if (active) setTranslated(data);
+        return;
+      }
       const cache = getCache();
       const keys = [];
       const values = [];
