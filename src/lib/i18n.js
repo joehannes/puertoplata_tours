@@ -55,7 +55,7 @@ export const t = {
       confirm: 'Confirm on WhatsApp',
       item: 'Item',
       clear: 'Clear cart',
-      paypal: 'Pay with PayPal'
+      paypal: 'Pay via PayPal.Me'
     },
     footer: {
       years: 'years guiding cruise visitors in Puerto Plata.',
@@ -131,7 +131,7 @@ export const t = {
       confirm: 'Confirmar por WhatsApp',
       item: 'Servicio',
       clear: 'Vaciar carrito',
-      paypal: 'Pagar con PayPal'
+      paypal: 'Pagar con PayPal.Me'
     },
     footer: {
       years: 'años guiando visitantes de crucero en Puerto Plata.',

@@ -159,8 +159,11 @@ export default function AdminPage({ data, updateData, lang }) {
           <label className="text-sm">WhatsApp number
             <input className="border rounded-xl p-2 w-full" value={draft.settings.whatsappNumber} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, whatsappNumber: e.target.value } }))} placeholder="WhatsApp" />
           </label>
-          <label className="text-sm">PayPal recipient email (used by checkout button)
+          <label className="text-sm">PayPal recipient email (optional)
             <input className="border rounded-xl p-2 w-full" value={draft.settings.paypalEmail || ''} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, paypalEmail: e.target.value } }))} placeholder="PayPal email" />
+          </label>
+          <label className="text-sm">PayPal.me username (for checkout link)
+            <input className="border rounded-xl p-2 w-full" value={draft.settings.paypalMeUsername || ''} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, paypalMeUsername: e.target.value } }))} placeholder="yourpaypalusername" />
           </label>
           <input className="border rounded-xl p-2" value={draft.settings.guideName || ''} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, guideName: e.target.value } }))} placeholder="Guide name" />
           <input className="border rounded-xl p-2" type="number" value={draft.settings.guideYears || 0} onChange={(e) => setDraft((prev) => ({ ...prev, settings: { ...prev.settings, guideYears: Number(e.target.value) } }))} placeholder="Years exp" />

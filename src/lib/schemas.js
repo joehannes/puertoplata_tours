@@ -36,6 +36,7 @@ export const appDataSchema = z.object({
   transfers: z.array(transferSchema),
   settings: z.object({
     paypalEmail: z.string().optional(),
+    paypalMeUsername: z.string().optional(),
     whatsappNumber: z.string(),
     currency: z.string().default('USD'),
     guideName: z.string().default('José'),

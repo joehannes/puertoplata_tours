@@ -1,9 +1,9 @@
 import { tr } from '../lib/i18n';
 
 const transferImage = {
-  airport_transfer_pop_cruise: 'https://images.pexels.com/photos/1178448/pexels-photo-1178448.jpeg?auto=compress&cs=tinysrgb&w=1200',
-  airport_transfer_pop_hotel: 'https://images.pexels.com/photos/2872890/pexels-photo-2872890.jpeg?auto=compress&cs=tinysrgb&w=1200',
-  group_minivan_transfer: 'https://images.pexels.com/photos/1850619/pexels-photo-1850619.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  airport_transfer_pop_cruise: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80',
+  airport_transfer_pop_hotel: 'https://images.pexels.com/photos/1178448/pexels-photo-1178448.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  group_minivan_transfer: 'https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1200&q=80',
   vip_express_transfer: 'https://images.pexels.com/photos/3786091/pexels-photo-3786091.jpeg?auto=compress&cs=tinysrgb&w=1200'
 };
 

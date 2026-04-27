@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import { tr } from '../lib/i18n';
 
 const heroImages = [
-  'https://images.pexels.com/photos/3155666/pexels-photo-3155666.jpeg?auto=compress&cs=tinysrgb&w=1000',
-  'https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg?auto=compress&cs=tinysrgb&w=1000',
-  'https://images.pexels.com/photos/3760259/pexels-photo-3760259.jpeg?auto=compress&cs=tinysrgb&w=1000'
+  'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1000&q=80',
+  'https://images.pexels.com/photos/1732278/pexels-photo-1732278.jpeg?auto=compress&cs=tinysrgb&w=1000',
+  'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1000&q=80'
 ];
 
 export default function LandingPage({ lang, data }) {
@@ -20,7 +20,6 @@ export default function LandingPage({ lang, data }) {
             <Link className="btn-island" to="/custom">🌴 {tr(lang, 'landing.planMyDay')}</Link>
           </div>
         </div>
-        <svg className="absolute -bottom-5 -right-2 w-40 h-40 opacity-30" viewBox="0 0 200 200"><path fill="white" d="M48.7,-63.9C64.4,-55.2,79.3,-43.1,83.7,-28.1C88.1,-13.1,82.2,4.8,74.4,20.7C66.5,36.6,56.7,50.5,43.6,62.1C30.5,73.8,14.3,83.2,-0.7,84.2C-15.7,85.2,-31.4,77.8,-43.1,67.1C-54.8,56.4,-62.6,42.4,-68.5,27.9C-74.5,13.5,-78.6,-1.5,-76.6,-16.1C-74.6,-30.6,-66.4,-44.7,-54.5,-54.2C-42.6,-63.6,-27,-68.4,-11.2,-73.2C4.7,-78,33,-72.6,48.7,-63.9Z" transform="translate(100 100)" /></svg>
       </section>
 
       <section className="grid grid-cols-3 gap-3">

@@ -9,9 +9,9 @@ export const defaultData = {
       price: { adult: 79, child: 59 },
       maxGroupSize: 12,
       images: [
-        'https://images.pexels.com/photos/6675953/pexels-photo-6675953.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/5149088/pexels-photo-5149088.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/4965888/pexels-photo-4965888.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80',
+        'https://images.pexels.com/photos/1732278/pexels-photo-1732278.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.unsplash.com/photo-1536750405018-36f963d6b548?auto=format&fit=crop&w=1200&q=80'
       ],
       tags: ['nature', 'adventure', 'waterfalls'],
       itinerary: ['Port pickup (Amber Cove or Taíno Bay)', 'Damajagua park briefing + equipment', 'Guided waterfall route', 'Dominican lunch stop', 'Return before all-aboard'],
@@ -28,9 +28,9 @@ export const defaultData = {
       price: { adult: 58, child: 38 },
       maxGroupSize: 14,
       images: [
-        'https://images.pexels.com/photos/5310566/pexels-photo-5310566.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/5310572/pexels-photo-5310572.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/5310572/pexels-photo-5310572.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=1200&q=80',
+        'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       tags: ['culture', 'food', 'shopping'],
       itinerary: ['Port pickup', 'Fortaleza San Felipe photo stop', 'Umbrella Street + Pink Alley', 'Rum & cacao tasting', 'Souvenir time + return'],
@@ -47,9 +47,9 @@ export const defaultData = {
       price: { adult: 62, child: 44 },
       maxGroupSize: 10,
       images: [
-        'https://images.pexels.com/photos/29216983/pexels-photo-29216983.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/11776693/pexels-photo-11776693.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1430677/pexels-photo-1430677.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+        'https://images.pexels.com/photos/109630/pexels-photo-109630.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1200&q=80'
       ],
       tags: ['views', 'nature', 'culture'],
       itinerary: ['Port pickup', 'Isabel de Torres route', 'Garden/photo walk', 'Local snack stop', 'Back to port'],
@@ -66,9 +66,9 @@ export const defaultData = {
       price: { adult: 68, child: 48 },
       maxGroupSize: 12,
       images: [
-        'https://images.pexels.com/photos/29216983/pexels-photo-29216983.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/11776693/pexels-photo-11776693.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+        'https://images.pexels.com/photos/109630/pexels-photo-109630.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/2161467/pexels-photo-2161467.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       tags: ['beach', 'snorkel', 'relax'],
       itinerary: ['Port pickup', 'Drive to beach bay', 'Snorkel or free time', 'Lunch near sea', 'Return window with buffer'],
@@ -85,9 +85,9 @@ export const defaultData = {
       price: { adult: 74, child: 52 },
       maxGroupSize: 8,
       images: [
-        'https://images.pexels.com/photos/163407/cyclists-trail-bike-clouds-163407.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1430675/pexels-photo-1430675.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80',
+        'https://images.pexels.com/photos/2161467/pexels-photo-2161467.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/3278215/pexels-photo-3278215.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       tags: ['adventure', 'atv', 'jungle'],
       itinerary: ['Port pickup', 'Safety orientation', 'ATV route with stops', 'Fresh fruit break', 'Return transfer'],
@@ -148,6 +148,7 @@ export const defaultData = {
   ],
   settings: {
     paypalEmail: import.meta.env.VITE_PAYPAL_EMAIL || 'owner@email.com',
+    paypalMeUsername: import.meta.env.VITE_PAYPAL_ME_USERNAME || 'ownerusername',
     whatsappNumber: import.meta.env.VITE_WHATSAPP_NUMBER || '18091234567',
     currency: 'USD',
     guideName: 'Rafael de la Cruz',

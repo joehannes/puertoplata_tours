@@ -8,7 +8,7 @@ Mobile-first React + Vite tourism storefront for Puerto Plata cruise visitors.
 - Tropical Caribbean UI with translucent cards/buttons, blur, and green jungle background pattern.
 - JSONBin content storage with localStorage fallback.
 - Admin dashboard with real forms and auto Cloudinary upload -> URL attachment.
-- PayPal checkout and bilingual WhatsApp booking message.
+- PayPal.me link checkout (`https://paypal.me/<username>/<total>`) and bilingual WhatsApp booking message.
 - Real-time EN→ES catalog translation for tours/transfers via Langbly API (`VITE_LANGBLY_API_KEY`).
 
 ## Final JSON seed (use in JSONBin)
